@@ -1,13 +1,21 @@
 from pymongo import MongoClient
+import json
 
 
 class Database():
-    def __init__(self) -> None:
-        client = MongoClient('localhost', 27017)
+    def __init__(self, dummy_categories, dummy_parts) -> None:
+        client = MongoClient(
+            host='localhost',
+            port=27017,
+            username='myMongoAdmin',
+            password='okon',
+        )
         self.db = client['konrad_borowik']
         self.categories = self.db['categories']
         self.parts = self.db['parts']
-        
+
+        self.categories.insert_many(dummy_categories)
+        self.parts.insert_many(dummy_parts)
 
     def insert_category(
             self,
@@ -20,7 +28,6 @@ class Database():
                 'parent_name': parent_name
             }
         )
-
 
     def insert_part(
             self,
@@ -43,15 +50,3 @@ class Database():
                 'location': location
             }
         )
-
-
-    def create_database(self) -> None:
-        self._insert_category('Fasteners')
-        
-        self._insert_category('Nuts')
-        self._insert_category('Bolts')
-
-        starter_parts = ['Hex', 'Flange', 'Cap', 'Nylon', 'Wood', 'Socket']
-        
-
-

@@ -1,0 +1,83 @@
+[
+    {
+        "serial_number": "DIN934",
+        "name": "Hex",
+        "description":"",
+        "category": "Nuts",
+        "quantity": 97,
+        "price": 0.12,
+        "location": "Jakku"
+    },
+    {
+        "serial_number": "DIN985",
+        "name": "Nylon",
+        "description":"",
+        "category": "Nuts",
+        "quantity": 98,
+        "price": 0.17,
+        "location": "Jedha"
+    },
+    {
+        "serial_number": "DIN6923",
+        "name": "Flange",
+        "description":"",
+        "category": "Nuts",
+        "quantity": 99,
+        "price": 0.14,
+        "location": "Felucia"
+    },
+    {
+        "serial_number": "DIN1587",
+        "name": "Cap",
+        "description":"",
+        "category": "Nuts",
+        "quantity": 100,
+        "price": 0.28,
+        "location": "Ryloth"
+    },
+    {
+        "serial_number": "DIN933",
+        "name": "Hex",
+        "description":"",
+        "category": "Bolts",
+        "quantity": 400,
+        "price": 0.98,
+        "location": "Scarif"
+    },
+    {
+        "serial_number": "DIN609",
+        "name": "Shoulder",
+        "description":"",
+        "category": "Bolts",
+        "quantity": 450,
+        "price": 1.27,
+        "location": "Dathomir"
+    },
+    {
+        "serial_number": "DIN125",
+        "name": "Flat",
+        "description":"",
+        "category": "Washers",
+        "quantity": 150,
+        "price": 0.08,
+        "location": "Lothal"
+    },
+    {
+        "serial_number": "DIN127",
+        "name": "Split Lock",
+        "description":"",
+        "category": "Washers",
+        "quantity": 200,
+        "price": 0.09,
+        "location": "Mustafar"
+    },
+    {
+        "serial_number": "DIN436",
+        "name": "Square",
+        "description":"",
+        "category": "Washers",
+        "quantity": 50,
+        "price": 0.07,
+        "location": "Kamino"
+    }
+]

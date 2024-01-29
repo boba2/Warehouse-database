@@ -4,6 +4,7 @@ from bson import ObjectId
 from models.category import Category
 from config.setup import client
 from schemas.category import categoryEntity, categoriesEntity
+from routes.utils.category_utils import check_if_category_is_empty
 
 
 category = APIRouter()
@@ -36,7 +37,7 @@ async def update_whole_category(id, category: Category):
             "$set": dict(category)
         }
     )
-    return categoryEntity(client.konrad_borowik.categories.find())
+    return categoryEntity(client.konrad_borowik.categories.find_one({"_id": ObjectId(id)}))
 
 
 # @category.put('/{key: value}')
@@ -54,5 +55,7 @@ async def update_whole_category(id, category: Category):
 
 @category.delete('/{id}')
 async def delete_category(id):
+    # category = client.konrad_borowik.categories.find_one({'_id': ObjectId(id)})
+    # print(category)
     client.konrad_borowik.categories.find_one_and_delete(id)
     return categoryEntity(client.konrad_borowik.categories.find())

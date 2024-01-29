@@ -29,7 +29,7 @@ async def update_one_element_of_part(id, part: Part):
             "$set": {dict(part)} 
         }
     )
-    return partEntity(client.konrad_borowik.parts.find())
+    return partEntity(client.konrad_borowik.parts.find_one({"_id": ObjectId(id)}))
 
 
 @part.delete('/{id}')

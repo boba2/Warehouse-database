@@ -13,29 +13,46 @@ async def find_all_categories():
     return categoriesEntity(client.konrad_borowik.categories.find())
 
 
+# @category.get('/{key: value}')
+# async def find_category_by_value(value: str):
+#     return categoryEntity(client.konrad_borowik.categories.find_one(
+#         {}, {value}
+#     ))
+
+
 @category.post('/')
 async def create_category(category: Category):
     client.konrad_borowik.categories.insert_one(dict(category))
     return categoriesEntity(client.konrad_borowik.categories.find())
 
 
-@category.put('/')
-async def update_category(query: dict, new_value: str):
-    for q in query.items():
-        key, value = q
-
+@category.put('/{id}')
+async def update_whole_category(id, category: Category):
     client.konrad_borowik.categories.find_one_and_update(
         {
-            key: value
+            "_id": ObjectId(id)
         },
         {
-            "$set": {key: new_value} 
+            "$set": dict(category)
         }
     )
-    return categoriesEntity(client.konrad_borowik.categories.find())
+    return categoryEntity(client.konrad_borowik.categories.find())
 
 
-@category.delete('/')
-async def delete_category(query: dict):
-    client.konrad_borowik.categories.find_one_and_delete(query)
-    return categoriesEntity(client.konrad_borowik.categories.find())
+# @category.put('/{key: value}')
+# async def update_one_element_in_category(key: str, value: str, new_value: str):
+#     client.konrad_borowik.categories.find_one_and_update(
+#         {
+#             key: value
+#         },
+#         {
+#             "$set": {key: new_value} 
+#         }
+#     )
+#     return categoryEntity(client.konrad_borowik.categories.find())
+
+
+@category.delete('/{id}')
+async def delete_category(id):
+    client.konrad_borowik.categories.find_one_and_delete(id)
+    return categoryEntity(client.konrad_borowik.categories.find())

@@ -1,4 +1,5 @@
 from fastapi import APIRouter
+from bson import ObjectId
 
 from models.part import Part
 from config.setup import client
@@ -18,23 +19,20 @@ async def create_part(part: Part):
     return partsEntity(client.konrad_borowik.parts.find())
 
 
-@part.put('/')
-async def update_part(query: dict, new_value: str):
-    for q in query.items():
-        key, value = q
-
+@part.put('/{id}')
+async def update_one_element_of_part(id, part: Part):
     client.konrad_borowik.parts.find_one_and_update(
         {
-            key: value
+            "_id": ObjectId(id)
         },
         {
-            "$set": {key: new_value} 
+            "$set": {dict(part)} 
         }
     )
-    return partsEntity(client.konrad_borowik.parts.find())
+    return partEntity(client.konrad_borowik.parts.find())
 
 
-@part.delete('/')
-async def delete_part(query: dict):
-    client.konrad_borowik.parts.find_one_and_delete(query)
-    return partsEntity(client.konrad_borowik.parts.find())
+@part.delete('/{id}')
+async def delete_part(id):
+    client.konrad_borowik.parts.find_one_and_delete(id)
+    return partEntity(client.konrad_borowik.parts.find())

@@ -34,5 +34,5 @@ async def update_one_element_of_part(id, part: Part):
 
 @part.delete('/{id}')
 async def delete_part(id):
-    client.konrad_borowik.parts.find_one_and_delete(id)
-    return partEntity(client.konrad_borowik.parts.find())
+    client.konrad_borowik.parts.find_one_and_delete({"_id": ObjectId(id)})
+    return f'Part deleted.'

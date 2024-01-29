@@ -55,7 +55,8 @@ async def update_whole_category(id, category: Category):
 
 @category.delete('/{id}')
 async def delete_category(id):
-    # category = client.konrad_borowik.categories.find_one({'_id': ObjectId(id)})
-    # print(category)
-    client.konrad_borowik.categories.find_one_and_delete(id)
-    return categoryEntity(client.konrad_borowik.categories.find())
+    if check_if_category_is_empty(client, id):
+        client.konrad_borowik.categories.find_one_and_delete({"_id": ObjectId(id)})
+        return f'Category deleted.'
+    else:
+        return f'This category is not empty.'

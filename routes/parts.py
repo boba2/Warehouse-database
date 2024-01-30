@@ -8,6 +8,7 @@ from schemas.parts import partEntity, partsEntity
 
 part = APIRouter()
 
+
 @part.get('/')
 async def find_all_parts():
     return partsEntity(client.konrad_borowik.parts.find())

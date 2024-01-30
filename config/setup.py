@@ -2,8 +2,6 @@ import json
 from pymongo import MongoClient
 from typing import List
 
-# from .database import Database
-
 
 def read_file(filename: str) -> List:
     with open(f'config/data/{filename}') as f:
@@ -14,7 +12,7 @@ def read_file(filename: str) -> List:
 
 dummy_categories = read_file('dummy_categories.json')
 dummy_parts = read_file('dummy_parts.json')
-# database = Database(dummy_categories, dummy_parts)
+# mongodb+srv://rekrutacja:BZijftwEru0oELxT@cluster11.yxu8n2k.mongodb.net/
 client = MongoClient(
     host='localhost',
     port=27017,

@@ -9,5 +9,5 @@ def categoryEntity(item) -> dict:
     }
 
 
-def categoriesEntity(entity) -> List:
+def categoryEntities(entity) -> List:
     return [categoryEntity(item) for item in entity]

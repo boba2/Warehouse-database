@@ -3,28 +3,32 @@ from bson import ObjectId
 
 from models.category import Category
 from config.setup import client
-from schemas.category import categoryEntity, categoriesEntity
+from schemas.category import categoryEntity, categoryEntities
 from routes.utils.category_utils import (
     check_if_category_is_empty,
     check_if_child_catogories_are_empty
 )
 
-router = APIRouter()
+
+router = APIRouter(
+    prefix="/categories",
+    tags=["categories"],
+)
 
 
-@router.get('/categories')
+@router.get('/')
 async def find_all_categories():
-    return categoriesEntity(client.konrad_borowik.categories.find())
+    return categoryEntities(client.konrad_borowik.categories.find())
 
 
-@router.post('/categories')
+@router.post('/')
 async def create_category(category: Category):
     client.konrad_borowik.categories.insert_one(dict(category))
-    return categoriesEntity(client.konrad_borowik.categories.find())
+    return categoryEntities(client.konrad_borowik.categories.find())
 
 
-@router.put('/categories/{id}')
-async def update_whole_category(id, category: Category):
+@router.put('/{id}')
+async def update_category(id, category: Category):
     client.konrad_borowik.categories.find_one_and_update(
         {
             "_id": ObjectId(id)
@@ -36,7 +40,7 @@ async def update_whole_category(id, category: Category):
     return categoryEntity(client.konrad_borowik.categories.find_one({"_id": ObjectId(id)}))
 
 
-@router.delete('/categories/{id}')
+@router.delete('/{id}')
 async def delete_category(id):
     if check_if_category_is_empty(client, id) and check_if_child_catogories_are_empty(client, id):
         client.konrad_borowik.categories.find_one_and_delete({"_id": ObjectId(id)})

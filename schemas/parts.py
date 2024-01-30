@@ -14,5 +14,5 @@ def partEntity(item) -> dict:
     }
 
 
-def partsEntity(entity) -> List:
+def partEntities(entity) -> List:
     return [partEntity(item) for item in entity]

@@ -1,6 +1,6 @@
 from fastapi import FastAPI
-from routes import categories, parts 
- 
+from routes import categories, parts
+
 
 app = FastAPI()
 

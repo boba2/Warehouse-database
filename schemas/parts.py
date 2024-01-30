@@ -10,7 +10,15 @@ def partEntity(item) -> dict:
         'category': item['category'],
         'quantity': item['quantity'],
         'price': item['price'],
-        'location': item['location']
+        'location': {
+            'warehouse': item['location']['warehouse'],
+            'room': item['location']['room'],
+            'bookcase': item['location']['bookcase'],
+            'shelf': item['location']['shelf'],
+            'cuvette': item['location']['cuvette'],
+            'column': item['location']['column'],
+            'row': item['location']['row'],
+        }
     }
 
 

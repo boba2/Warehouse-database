@@ -6,21 +6,21 @@ from config.setup import client
 from schemas.parts import partEntity, partsEntity
 
 
-part = APIRouter()
+router = APIRouter()
 
 
-@part.get('/')
+@router.get('/parts')
 async def find_all_parts():
     return partsEntity(client.konrad_borowik.parts.find())
 
 
-@part.post('/')
+@router.post('/parts')
 async def create_part(part: Part):
     client.konrad_borowik.parts.insert_one(dict(part))
     return partsEntity(client.konrad_borowik.parts.find())
 
 
-@part.put('/{id}')
+@router.put('/parts/{id}')
 async def update_one_element_of_part(id, part: Part):
     client.konrad_borowik.parts.find_one_and_update(
         {
@@ -33,7 +33,7 @@ async def update_one_element_of_part(id, part: Part):
     return partEntity(client.konrad_borowik.parts.find_one({"_id": ObjectId(id)}))
 
 
-@part.delete('/{id}')
+@router.delete('/parts/{id}')
 async def delete_part(id):
     client.konrad_borowik.parts.find_one_and_delete({"_id": ObjectId(id)})
     return f'Part deleted.'

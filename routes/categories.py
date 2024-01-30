@@ -9,21 +9,21 @@ from routes.utils.category_utils import (
     check_if_child_catogories_are_empty
 )
 
-category = APIRouter()
+router = APIRouter()
 
 
-@category.get('/')
+@router.get('/categories')
 async def find_all_categories():
     return categoriesEntity(client.konrad_borowik.categories.find())
 
 
-@category.post('/')
+@router.post('/categories')
 async def create_category(category: Category):
     client.konrad_borowik.categories.insert_one(dict(category))
     return categoriesEntity(client.konrad_borowik.categories.find())
 
 
-@category.put('/{id}')
+@router.put('/categories/{id}')
 async def update_whole_category(id, category: Category):
     client.konrad_borowik.categories.find_one_and_update(
         {
@@ -36,7 +36,7 @@ async def update_whole_category(id, category: Category):
     return categoryEntity(client.konrad_borowik.categories.find_one({"_id": ObjectId(id)}))
 
 
-@category.delete('/{id}')
+@router.delete('/categories/{id}')
 async def delete_category(id):
     if check_if_category_is_empty(client, id) and check_if_child_catogories_are_empty(client, id):
         client.konrad_borowik.categories.find_one_and_delete({"_id": ObjectId(id)})

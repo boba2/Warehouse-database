@@ -11,6 +11,7 @@ from routes.utils.category_utils import (
 
 category = APIRouter()
 
+
 @category.get('/')
 async def find_all_categories():
     return categoriesEntity(client.konrad_borowik.categories.find())

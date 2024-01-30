@@ -18,7 +18,7 @@ async def find_all_parts():
     return partEntities(client.konrad_borowik.parts.find())
 
 
-@router.get('/search', tags=['Get'])
+@router.get('/search')
 async def find_part(query: singleKeyQuery):
     return partEntities(client.konrad_borowik.parts.find(dict(query)))
 

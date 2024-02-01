@@ -6,7 +6,8 @@ from config.setup import client
 from schemas.category import categoryEntity, categoryEntities
 from routes.utils.category_utils import (
     check_if_category_is_empty,
-    check_if_child_catogories_are_empty
+    check_if_child_catogories_are_empty,
+    input_validation
 )
 
 
@@ -23,8 +24,13 @@ async def find_all_categories():
 
 @router.post('/')
 async def create_category(category: Category):
-    client.konrad_borowik.categories.insert_one(dict(category))
-    return categoryEntities(client.konrad_borowik.categories.find())
+    try:
+        print('VALIDATING')
+        input_validation(category)
+        client.konrad_borowik.categories.insert_one(dict(category))
+        return categoryEntities(client.konrad_borowik.categories.find())
+    except Exception as e:
+        print(f'Caught this error: {e}')
 
 
 @router.put('/{id}')
@@ -42,7 +48,7 @@ async def update_category(id, category: Category):
 
 @router.delete('/{id}')
 async def delete_category(id):
-    if check_if_category_is_empty(client, id) and check_if_child_catogories_are_empty(client, id):
+    if check_if_category_is_empty(id) and check_if_child_catogories_are_empty(id):
         client.konrad_borowik.categories.find_one_and_delete({"_id": ObjectId(id)})
         return f'Category deleted.'
     else:

@@ -1,7 +1,9 @@
 from pydantic import BaseModel
 from typing import Union
 
+from models.part import Location
+
 
 class singleKeyQuery(BaseModel):
-    name: str
-    value: Union[str, int, float, dict]
+    key: str
+    value: int | float | str | Location

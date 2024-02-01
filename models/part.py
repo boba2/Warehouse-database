@@ -1,4 +1,5 @@
 from pydantic import BaseModel
+from typing import Union
 
 
 class Location(BaseModel):
@@ -18,4 +19,4 @@ class Part(BaseModel):
     category: str
     quantity: int
     price: float
-    location: dict[str, Location]
+    location: Location

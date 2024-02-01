@@ -2,7 +2,7 @@ from fastapi import APIRouter
 from bson import ObjectId
 
 from models.part import Part
-from models.single_key_query import singleKeyQuery
+from routes.utils.parts_utils import parse_input
 from config.setup import client
 from schemas.parts import partEntity, partEntities
 
@@ -18,9 +18,10 @@ async def find_all_parts():
     return partEntities(client.konrad_borowik.parts.find())
 
 
-@router.get('/search')
-async def find_part(query: singleKeyQuery):
-    return partEntities(client.konrad_borowik.parts.find(dict(query)))
+@router.get('/search/{key: value}')
+async def find_part(key: str, value: str | int):
+    query = parse_input(key, value)
+    return partEntities(client.konrad_borowik.parts.find(query))
 
 
 @router.post('/')

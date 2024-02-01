@@ -1,9 +1,11 @@
-def parse_input(key: str, value: str | int) -> dict:
-    int_fields = ['quantity', 'room', 'bookcase', 'shelf', 'cuvette', 'column', 'row']
-    float_fields = ['price']
-    if key.replace('location.', '') in int_fields:
-        value = int(value)
-    elif key in float_fields:
-        value = float(value)
+import yaml
 
-    return {key: value}
+
+def parse_key(key: str) -> str:
+    location_keys = ['warehouse', 'room', 'bookcase', 'shelf', 'cuvette', 'column', 'row']
+    return 'location.' + key if key in location_keys else key
+
+
+def parse_value(value: str) -> str | int | float:
+    return yaml.safe_load(value)
+    

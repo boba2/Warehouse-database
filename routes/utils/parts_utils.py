@@ -14,11 +14,16 @@ def parse_value(value: str) -> str | int | float:
 
 def check_if_correct_category(part: Part):
     '''
+    Category can't be empty
     Can't add a part to base category
     '''
+    if part.category.split() == '':
+        raise Exception(f"Category cannot be empty.")
+
     base_categories = client.konrad_borowik.categories.find(
         {'parent_name': ''}
     )
     for bc in base_categories:
         if part.category == bc['name']:
             raise Exception(f"Cannot assign part to base category '{part.category}'.")
+        

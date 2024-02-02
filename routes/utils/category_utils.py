@@ -36,18 +36,24 @@ def check_if_child_catogories_are_empty(id: str) -> bool:
     return output
         
 
-def input_validation(category: Category):
-    # check if name is empty
+def check_if_name_is_empty(category):
     if category.name == '':
         raise Exception(f"Category name can't be empty!")
 
-    # check if name is not 'string'
+
+def check_if_data_is_filled(category):
     if category.name == 'string' or category.parent_name == 'string':
         raise Exception(f"Did you mean 'String'?")
 
-    # check if category name already exists 
+
+def check_if_name_already_exists(category):
     categories = client.konrad_borowik.categories.find()
     for c in categories:
-        print(c['name'], category.name)
         if category.name in c['name']:
             raise Exception(f'Category already exists!')
+
+
+def input_validation(category: Category):
+    check_if_name_is_empty(category)
+    check_if_data_is_filled(category)
+    check_if_name_already_exists(category)

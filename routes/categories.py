@@ -25,12 +25,11 @@ async def find_all_categories():
 @router.post('/')
 async def create_category(category: Category):
     try:
-        print('VALIDATING')
         input_validation(category)
         client.konrad_borowik.categories.insert_one(dict(category))
         return categoryEntities(client.konrad_borowik.categories.find())
     except Exception as e:
-        print(f'Caught this error: {e}')
+        return f'Caught this error: {e}'
 
 
 @router.put('/{id}')

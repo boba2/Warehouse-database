@@ -36,17 +36,17 @@ def check_if_child_catogories_are_empty(id: str) -> bool:
     return output
         
 
-def check_if_name_is_empty(category):
-    if category.name == '':
+def check_if_name_is_empty(category: Category):
+    if category.name.split() == '':
         raise Exception(f"Category name can't be empty!")
 
 
-def check_if_data_is_filled(category):
+def check_if_data_is_filled(category: Category):
     if category.name == 'string' or category.parent_name == 'string':
         raise Exception(f"Did you mean 'String'?")
 
 
-def check_if_name_already_exists(category):
+def check_if_name_already_exists(category: Category):
     categories = client.konrad_borowik.categories.find()
     for c in categories:
         if category.name in c['name']:

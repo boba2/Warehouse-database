@@ -2,7 +2,11 @@ from fastapi import APIRouter
 from bson import ObjectId
 
 from models.part import Part
-from routes.utils.parts_utils import parse_key, parse_value
+from routes.utils.parts_utils import (
+    parse_key,
+    parse_value,
+    check_if_correct_category
+)
 from config.setup import client
 from schemas.parts import partEntity, partEntities
 
@@ -52,21 +56,29 @@ async def find_part_by_value(value: str):
 
 @router.post('/')
 async def create_part(part: Part):
-    client.konrad_borowik.parts.insert_one(dict(part))
-    return partEntities(client.konrad_borowik.parts.find())
+    try:
+        check_if_correct_category(part)
+        client.konrad_borowik.parts.insert_one(dict(part))
+        return partEntities(client.konrad_borowik.parts.find())
+    except Exception as e:
+        return f'Caught this error: {e}'
 
 
 @router.put('/{id}')
-async def update_part(id, part: Part):
-    client.konrad_borowik.parts.find_one_and_update(
-        {
-            "_id": ObjectId(id)
-        },
-        {
-            "$set": {dict(part)} 
-        }
-    )
-    return partEntity(client.konrad_borowik.parts.find_one({"_id": ObjectId(id)}))
+async def update_whole_part(id, part: Part):
+    try:
+        check_if_correct_category(part)
+        client.konrad_borowik.parts.find_one_and_update(
+            {
+                "_id": ObjectId(id)
+            },
+            {
+                "$set": {dict(part)}
+            }
+        )
+        return partEntity(client.konrad_borowik.parts.find_one({"_id": ObjectId(id)}))
+    except Exception as e:
+        return f'Caught this error: {e}'
 
 
 @router.delete('/{id}')

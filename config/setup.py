@@ -15,6 +15,7 @@ dummy_parts = read_file('dummy_parts.json')
 client = MongoClient(
     'mongodb+srv://rekrutacja:BZijftwEru0oELxT@cluster11.yxu8n2k.mongodb.net/'
 )
+# use this part to test locally
 # client = MongoClient(
 #     host='localhost',
 #     port=27017,

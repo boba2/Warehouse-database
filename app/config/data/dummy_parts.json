@@ -1,0 +1,155 @@
+[
+    {
+        "serial_number": "DIN934",
+        "name": "Hex",
+        "description":"",
+        "category": "Nuts",
+        "quantity": 97,
+        "price": 0.12,
+        "location": {
+            "warehouse": "Warsaw",
+            "room": 19,
+            "bookcase": 3,
+            "shelf": 7,
+            "cuvette": 21,
+            "column": 8,
+            "row": 13
+        }
+    },
+    {
+        "serial_number": "DIN985",
+        "name": "Nylon",
+        "description":"",
+        "category": "Nuts",
+        "quantity": 98,
+        "price": 0.17,
+        "location": {
+            "warehouse": "Warsaw",
+            "room": 17,
+            "bookcase": 1,
+            "shelf": 1,
+            "cuvette": 1,
+            "column": 1,
+            "row": 1
+        }
+    },
+    {
+        "serial_number": "DIN6923",
+        "name": "Flange",
+        "description":"",
+        "category": "Nuts",
+        "quantity": 99,
+        "price": 0.14,
+        "location": {
+            "warehouse": "Warsaw",
+            "room": 18,
+            "bookcase": 7,
+            "shelf": 23,
+            "cuvette": 6,
+            "column": 17,
+            "row": 91
+        }
+    },
+    {
+        "serial_number": "DIN1587",
+        "name": "Cap",
+        "description":"",
+        "category": "Nuts",
+        "quantity": 100,
+        "price": 0.28,
+        "location": {
+            "warehouse": "Warsaw",
+            "room": 18,
+            "bookcase": 17,
+            "shelf": 2,
+            "cuvette": 6,
+            "column": 1,
+            "row": 13
+        }
+    },
+    {
+        "serial_number": "DIN933",
+        "name": "Hex",
+        "description":"",
+        "category": "Bolts",
+        "quantity": 400,
+        "price": 0.98,
+        "location": {
+            "warehouse": "Poznan",
+            "room": 322,
+            "bookcase": 2,
+            "shelf": 7,
+            "cuvette": 5,
+            "column": 8,
+            "row": 8
+        }
+    },
+    {
+        "serial_number": "DIN609",
+        "name": "Shoulder",
+        "description":"",
+        "category": "Bolts",
+        "quantity": 450,
+        "price": 1.27,
+        "location": {
+            "warehouse": "Poznan",
+            "room": 319,
+            "bookcase": 12,
+            "shelf": 7,
+            "cuvette": 14,
+            "column": 1,
+            "row": 1
+        }
+    },
+    {
+        "serial_number": "DIN125",
+        "name": "Flat",
+        "description":"",
+        "category": "Washers",
+        "quantity": 150,
+        "price": 0.08,
+        "location": {
+            "warehouse": "Poznan",
+            "room": 322,
+            "bookcase": 6,
+            "shelf": 1,
+            "cuvette": 1,
+            "column": 1,
+            "row": 1
+        }
+    },
+    {
+        "serial_number": "DIN127",
+        "name": "Split Lock",
+        "description":"",
+        "category": "Washers",
+        "quantity": 200,
+        "price": 0.09,
+        "location": {
+            "warehouse": "Poznan",
+            "room": 321,
+            "bookcase": 3,
+            "shelf": 2,
+            "cuvette": 1,
+            "column": 16,
+            "row": 7
+        }
+    },
+    {
+        "serial_number": "DIN436",
+        "name": "Square",
+        "description":"",
+        "category": "Washers",
+        "quantity": 50,
+        "price": 0.07,
+        "location": {
+            "warehouse": "Poznan",
+            "room": 321,
+            "bookcase": 2,
+            "shelf": 5,
+            "cuvette": 3,
+            "column": 15,
+            "row": 6
+        }
+    }
+]
